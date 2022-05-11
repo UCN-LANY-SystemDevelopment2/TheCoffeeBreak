@@ -1,19 +1,19 @@
 package data;
 
-import data.daos.OrderDaoSQLServer;
-import data.daos.ProductDaoSQLServer;
+import data.daos.FakeOrderDao;
+import data.daos.FakeProductDao;
 
 public class DaoFactory {
 
 	// TODO implement the factory methods so they instantiate the contrete dao implementation and return the object as the interface
 	
-	public static OrderDao createOrderDao(DataContext dbContext) {
+	public static OrderDao createOrderDao() {
 				
-		return new OrderDaoSQLServer(dbContext);
+		return new FakeOrderDao();
 	}
 	
-	public static ProductDao createProductDao(DataContext dbContext) {
+	public static ProductDao createProductDao() {
 		
-		return new ProductDaoSQLServer(dbContext);
+		return new FakeProductDao();
 	}
 }

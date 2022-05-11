@@ -3,15 +3,10 @@ package data.daos;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.DataContext;
 import data.OrderDao;
 import model.Order;
 
-public class OrderDaoFake implements OrderDao {
-
-	public OrderDaoFake(DataContext dataContext) {
-		
-	}
+public class FakeOrderDao implements OrderDao {
 
 	@Override
 	public List<Order> getAll() {

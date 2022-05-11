@@ -22,7 +22,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import controller.OrdersController;
+import controller.OrderHandlingController;
 import model.Order;
 import model.OrderLine;
 import model.Product;
@@ -45,9 +45,9 @@ public class NewOrderDialog extends JDialog {
 	private final JButton btnOk;
 	private final JButton btnCancel;
 
-	private final OrdersController ordersCtrl;
+	private final OrderHandlingController ordersCtrl;
 
-	public NewOrderDialog(OrdersController ordersCtrl) {
+	public NewOrderDialog(OrderHandlingController ordersCtrl) {
 
 		this.ordersCtrl = ordersCtrl;
 
@@ -207,7 +207,7 @@ public class NewOrderDialog extends JDialog {
 
 		for (int idx = 0; idx < this.order.getOrderLines().size(); idx++) {
 			OrderLine ol = this.order.getOrderLines().get(idx);
-			if (ol.getItem().getName() == product.getName()) {
+			if (ol.getItem() == null || ol.getItem().getName() == product.getName()) {
 				ol.setQuantity(ol.getQuantity() + 1);
 				itemAdded = true;
 				break;
@@ -255,7 +255,9 @@ public class NewOrderDialog extends JDialog {
 		public Component getListCellRendererComponent(JList<? extends OrderLine> list, OrderLine value, int index,
 				boolean isSelected, boolean cellHasFocus) {
 
-			String cellText = value.getQuantity() + " " + value.getItem().getName();
+			String cellText = "N/A";
+			if(value != null && value.getItem() != null)
+				cellText = value.getQuantity() + " " + value.getItem().getName();
 
 			return renderer.getListCellRendererComponent(list, cellText, index, isSelected, cellHasFocus);
 		}
@@ -269,7 +271,9 @@ public class NewOrderDialog extends JDialog {
 		public Component getListCellRendererComponent(JList<? extends Product> list, Product value, int index,
 				boolean isSelected, boolean cellHasFocus) {
 
-			String renderedText = value.getName();
+			String renderedText = "N/A";
+			if(value != null)
+				renderedText = value.getName();
 
 			return renderer.getListCellRendererComponent(list, renderedText, index, isSelected, cellHasFocus);
 		}

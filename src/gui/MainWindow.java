@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 
-import controller.OrdersController;
+import controller.OrderHandlingController;
 import model.Order;
 
 public class MainWindow extends JFrame {
@@ -28,9 +28,9 @@ public class MainWindow extends JFrame {
 	private JButton btnNewOrder;
 	private JButton btnFinishOrder;
 
-	private OrdersController orderCtrl;
+	private OrderHandlingController orderCtrl;
 
-	public MainWindow(OrdersController orderCtrl) {
+	public MainWindow(OrderHandlingController orderCtrl) {
 		super("Orders");
 		this.orderCtrl = orderCtrl;
 

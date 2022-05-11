@@ -14,6 +14,10 @@ public class OrderLine {
 	}
 	
 	public double getSubTotal() {
+		
+		if(item == null)
+			return 0;
+		
 		return item.getPrice() * quantity;
 	}
 	
